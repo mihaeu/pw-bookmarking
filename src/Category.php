@@ -23,6 +23,16 @@ class Category implements IteratorAggregate
         $this->bookmarks->attach($bookmark);
     }
 
+    public function __toString() : string
+    {
+        $output = [];
+        foreach ($this->bookmarks as $bookmark) {
+            /** @var Bookmark $bookmark */
+            $output[] = $bookmark->__toString();
+        }
+        return $this->name . PHP_EOL . implode(PHP_EOL, $output);
+    }
+
     /**
      * @inheritdoc
      */

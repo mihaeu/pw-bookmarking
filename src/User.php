@@ -49,7 +49,7 @@ class User
 
     public function categories() : CategoryCollection
     {
-
+        return $this->categories;
     }
 }
 
