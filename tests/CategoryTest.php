@@ -49,5 +49,26 @@ class CategoryTest extends PHPUnit_Framework_TestCase
         $expected = '/Awesome.*google\.com.*google\.de.*/s';
         $this->assertRegExp($expected, $category->__toString());
     }
+
+    public function testCanFilterPrivateBookmarks()
+    {
+        $category = new Category(new CategoryName('Awesome'));
+        $bookmark = new Bookmark(
+            new Link('http://google.com/'),
+            new Comment(''),
+            new DateTimeImmutable()
+        );
+        $bookmark2 = new Bookmark(
+            new Link('http://google.de/'),
+            new Comment(''),
+            new DateTimeImmutable(),
+            true
+        );
+        $category->add($bookmark);
+        $category->add($bookmark2);
+
+        $this->assertNotContains($bookmark2, $category->publicBookmarks());
+        $this->assertContains($bookmark, $category->publicBookmarks());
+    }
 }
 

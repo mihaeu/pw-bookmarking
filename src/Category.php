@@ -33,6 +33,15 @@ class Category implements IteratorAggregate
         return $this->name . PHP_EOL . implode(PHP_EOL, $output);
     }
 
+    public function publicBookmarks() : array
+    {
+        return array_filter(iterator_to_array($this->bookmarks), function (Bookmark $bookmark) {
+            if ($bookmark->isPublic()) {
+                return $bookmark;
+            }
+        });
+    }
+
     /**
      * @inheritdoc
      */

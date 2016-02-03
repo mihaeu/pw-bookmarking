@@ -21,5 +21,27 @@ class BookmarkTest extends PHPUnit_Framework_TestCase
             $bookmark->__toString()
         );
     }
+    
+    public function testHasDateOfCreation()
+    {
+        $now = new DateTimeImmutable();
+        $bookmark = new Bookmark(
+            new Link('http://google.com/'),
+            new Comment(''),
+            $now
+        );
+        $this->assertEquals($now, $bookmark->createdAt());
+    }
+
+    public function testCanBePrivate()
+    {
+        $bookmark = new Bookmark(
+            new Link('http://google.com/'),
+            new Comment(''),
+            new DateTimeImmutable(),
+            true
+        );
+        $this->assertFalse($bookmark->isPublic());
+    }
 }
 
