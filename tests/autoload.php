@@ -10,6 +10,8 @@ spl_autoload_register(
                 'bookmark' => '/../src/Bookmark.php',
                 'bookmarktest' => '/BookmarkTest.php',
                 'category' => '/../src/Category.php',
+                'categorycollection' => '/../src/CategoryCollection.php',
+                'categorycollectiontest' => '/CategoryCollectionTest.php',
                 'categoryname' => '/../src/CategoryName.php',
                 'categorynametest' => '/CategoryNameTest.php',
                 'categorytest' => '/CategoryTest.php',
